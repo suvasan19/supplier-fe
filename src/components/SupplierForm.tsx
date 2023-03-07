@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 
-// interface FormData {
-// 	name: string;
-// 	logo: string;
-// 	address: string;
-// }
+interface FormData {
+	name: string;
+	logo: string;
+	address: string;
+}
 
 const validationSchema = Yup.object({
 	name: Yup.string().required("Name is required"),
@@ -98,9 +98,9 @@ export function SupplierForm() {
 					type='file'
 					name='logo'
 					accept='image/*'
-					onChange={(event) => {
+					onChange={(event: React.ChangeEvent<any>) => {
 						setUploadFile(event.target.files[0]);
-						f = event.target.files[0];
+						var f = event.target.files[0];
 						handleUpload(event);
 					}}
 					onBlur={formik.handleBlur}
