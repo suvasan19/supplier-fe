@@ -24,7 +24,16 @@ export function SupplierInfo() {
 		<div>
 			{data.map((item) => (
 				<div className='container d-flex justify-content-center pb-3'>
-					<img className='img-fluid' src={item.logo} alt='' style={imageStyle} />
+					<img
+						className='img-fluid'
+						src={item.logo}
+						alt=''
+						style={{
+							width: "10em",
+							height: "10em",
+							objectFit: "fill",
+						}}
+					/>
 					<div className='p-5'>
 						<h4 className='ml-5 pl-5'>Name: {item.name}</h4>
 						<h5>Address: {item.address}</h5>
