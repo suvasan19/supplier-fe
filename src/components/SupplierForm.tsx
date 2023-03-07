@@ -5,11 +5,11 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 
-interface FormData {
-	name: string;
-	logo: string;
-	address: string;
-}
+// interface FormData {
+// 	name: string;
+// 	logo: string;
+// 	address: string;
+// }
 
 const validationSchema = Yup.object({
 	name: Yup.string().required("Name is required"),
@@ -24,12 +24,12 @@ export function SupplierForm() {
 	const [imageSrc, setImageSrc] = useState("");
 
 	const handleUpload = async (e) => {
-		// formik.setFieldValue("logo", imageSrc);
+		formik.setFieldValue("logo", imageSrc);
 		console.log(e.target.files[0]);
 		console.log(uploadFile);
 		console.log(formik.values.logo);
 		const formData = new FormData();
-		formData.append("logo", e.target.files[0]);
+		formData.append("file", e.target.files[0]);
 		formData.append("upload_preset", "supplier");
 
 		await axios
@@ -98,7 +98,7 @@ export function SupplierForm() {
 					type='file'
 					name='logo'
 					accept='image/*'
-					onChange={(event: React.ChangeEvent<any>) => {
+					onChange={(event) => {
 						setUploadFile(event.target.files[0]);
 						f = event.target.files[0];
 						handleUpload(event);
